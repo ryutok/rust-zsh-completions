@@ -14,7 +14,4 @@ cargo_url="https://raw.githubusercontent.com/rust-lang/cargo/rust-${cargo_new_ve
 if [ ${rustup_cur_ver} != ${rustup_new_ver} ]; then
   rustup completions zsh > ${src_dir}/_rustup
   curl ${cargo_url} > ${src_dir}/_cargo
-  export cmp_updated=true
-else
-  export cmp_updated=false
 fi
