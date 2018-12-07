@@ -22,9 +22,9 @@ after_success:
   - odiff=`git diff` && echo $odiff
   - if [[ -n "$odiff" ]]; then echo "[`date -Ru`] rustup ${rustup_ver} cargo ${cargo_ver}" >> ./build/auto_update.log; fi
   - git config --global user.name "Travis CI"
-  - git config --global user.email "travis@travis-ci.org"
+  - git config --global user.email "26628494+ryutok@users.noreply.github.com"
   - git add --all
   - git commit -m "Auto update from Travis CI"
   - git tag -f ${rustup_ver}
   - if [[ -n "$odiff" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git master 2> /dev/null; fi
-  - if [[ -n "$odiff" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
+  - if [[ -n "$odiff" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git ${rustup_ver} 2> /dev/null; fi
