@@ -1,0 +1,23 @@
+os: linux
+sudo: enabled
+env:
+  global:
+    secure: "IVdXSV6DPKAyZqtpLSV00MSVnR6lIcWtD3F/s2HTFJQapJbEkZXSjOBFScKflBYcjE3+ui1LfLouGyJobGKen+LS7VOMmK9MG6I/Tt8heYwSMuRnTAWXpMOxuzaOTxw2DtS9fWvihUjd3c+cRCnz3OHqYdJQ8PyTHExN8pGa4d6G1I5sq9G/KDnjmD6X4EIqeXblomDTKp8axf/XUN9yDGjyooPZJLmE9D0MYEk8LXkyHqCLP30YcsnF6mG/5Cmc3QdFx2kcL/bHGIa9ckqjd1kzL4T18oT84qxw43x1nkxApI2kF0LCTJhdbSQbX0WyJDBduB0YjPGE7jINJy8fKeacAQ2IbZ9SWKFfcErzSATh4+kh3PIIc4FmuAo8Oo0qpY1Jum5qixyOB3eAewZndcLHDDBngH8X0aBSNmeL+T8h7nfQY3vdq8q/l7DtRuia7KrHnRxADjJRrfw6pQbEgs8qGPYmVEGa4JryjqrCFoI+S9/dKlIMLn4dw9UbVtcZKUs5W0OrBOpwXvgaTDxXk/jDccTJ1ETup+mAexbamJzjX4hRn4bTVuGijUjWCA4FULTzM8IRkeUfaQ3EUPxGbRqc4ECCPprVy7D/s/mCRZTC0RadRn8BYXg2T1V7IXmzZL9rlw99YCxLkB5vrPQeHa9zfvh/RWO1EjMno3gkYZo="
+
+install:
+  #- sudo apt-get install zsh
+  - curl https://sh.rustup.rs -sSf | sh
+
+before_script:
+  - export updated_at=`date -Ru`
+  - export rustup_new_ver=`rustup --version | cut -d ' ' -f 2`
+  - export cargo_new_ver=`cargo --version | cut -d ' ' -f 2`
+
+script: ./build/auto_update.sh
+
+after_sucess:
+  - if [ cmp_updated ]; then; echo "[${updated_at}] rustup: ${rustup_new_ver} cargo: ${cargo_new_ver}" >> ./build/auto_update.log; fi
+  - git config --global user.name "Travis CI"
+  - git config --global user.email "travis@travis-ci.org"
+  - git tag ${rustup_new_ver} -a -m "Auto update from Travis CI"
+  - if [ cmp_updated ]; then; git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
