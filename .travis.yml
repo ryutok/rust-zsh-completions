@@ -17,13 +17,13 @@ script:
   - ./build/auto_update.sh
 
 after_success:
-  - rustup_ver=`rustup --version | cut -d ' ' -f 2`
-  - cargo_ver=`cargo --version | cut -d ' ' -f 2`
-  - odiff=`git diff`
+  - rustup_ver=`rustup --version | cut -d ' ' -f 2` && echo $rustup_ver
+  - cargo_ver=`cargo --version | cut -d ' ' -f 2` && echo $cargo_ver
+  - odiff=`git diff` && echo $odiff
   - if [[ -n "$odiff" ]]; then echo "[`date -Ru`] rustup ${rustup_ver} cargo ${cargo_ver}" >> ./build/auto_update.log; fi
   - git config --global user.name "Travis CI"
   - git config --global user.email "travis@travis-ci.org"
   - git add --all
   - git commit -m "Auto update from Travis CI"
-  - git tag -f ${rustup_new_ver}
+  - git tag -f ${rustup_ver}
   - if [[ -n "$odiff" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
