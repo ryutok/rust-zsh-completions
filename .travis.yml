@@ -21,8 +21,8 @@ script:
   - ./build/auto_update.sh
 
 after_success:
-  - if [[ "${cmp_updated}" == "true" ]]; then echo "[${updated_at}] rustup: ${rustup_new_ver} cargo: ${cargo_new_ver}" >> ./build/auto_update.log; fi
+  #  - if [[ "${cmp_updated}" == "true" ]]; then echo "[${updated_at}] rustup: ${rustup_new_ver} cargo: ${cargo_new_ver}" >> ./build/auto_update.log; fi
   - git config --global user.name "Travis CI"
   - git config --global user.email "travis@travis-ci.org"
   - git tag ${rustup_new_ver} -a -m "Auto update from Travis CI"
-  - if [[ "${cmp_updated}" == "true" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
+  #  - if [[ "${cmp_updated}" == "true" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
