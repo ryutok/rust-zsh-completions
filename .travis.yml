@@ -29,5 +29,5 @@ after_success:
   - git add --all
   - git commit -m "Auto update from Travis CI"
   - git tag -f ${rustup_ver}
-  - if [[ -n "$odiff" ]]; then git push -f https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git master; fi
+  - if [[ -n "$odiff" ]]; then git push https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git master; fi
   - if [[ -n "$odiff" ]]; then git push -f https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git ${rustup_ver}; fi
