@@ -23,5 +23,7 @@ after_success:
   - if [[ -n "$odiff" ]]; then echo "[`date -Ru`] rustup ${rustup_ver} cargo ${cargo_ver}" >> ./build/auto_update.log; fi
   - git config --global user.name "Travis CI"
   - git config --global user.email "travis@travis-ci.org"
-  - git tag -a -m "Auto update from Travis CI" ${rustup_new_ver}
+  - git add --all
+  - git commit -m "Auto update from Travis CI"
+  - git tag -f ${rustup_new_ver}
   - if [[ -n "$odiff" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
