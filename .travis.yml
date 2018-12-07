@@ -11,6 +11,7 @@ branches:
 
 install:
   - curl https://sh.rustup.rs -sSf | sh -s -- -y
+  - export PATH=$HOME/.cargo/bin:$PATH
 
 script:
   - ./build/auto_update.sh
@@ -19,8 +20,8 @@ after_success:
   - rustup_new_ver=`rustup --version | cut -d ' ' -f 2`
   - cargo_new_ver=`cargo --version | cut -d ' ' -f 2`
   - odiff=`git diff`
-  - if [[ !-n "$odiff" ]]; then echo "[`date -Ru`] rustup\: ${rustup_new_ver} cargo\: ${cargo_new_ver}" >> ./build/auto_update.log; fi
+  - if [[ -n "$odiff" ]]; then echo "[`date -Ru`] rustup\: ${rustup_new_ver} cargo\: ${cargo_new_ver}" >> ./build/auto_update.log; fi
   - git config --global user.name "Travis CI"
   - git config --global user.email "travis@travis-ci.org"
   - git tag ${rustup_new_ver} -a -m "Auto update from Travis CI"
-  - if [[ !-n "$odiff" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
+  - if [[ -n "$odiff" ]]; then git push --quiet https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git --tags 2> /dev/null; fi
