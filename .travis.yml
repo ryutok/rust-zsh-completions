@@ -13,9 +13,9 @@ install:
   - curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 before_script:
-  - export updated_at=`date -Ru`
-  - export rustup_new_ver=`rustup --version | cut -d ' ' -f 2`
-  - export cargo_new_ver=`cargo --version | cut -d ' ' -f 2`
+  - export updated_at="`date -Ru`"
+  - export rustup_new_ver="`rustup --version | cut -d ' ' -f 2`"
+  - export cargo_new_ver="`cargo --version | cut -d ' ' -f 2`"
 
 script:
   - ./build/auto_update.sh
