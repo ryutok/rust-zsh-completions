@@ -17,11 +17,10 @@ script:
   - ./build/auto_update.sh
 
 after_success:
-  - rustup_new_ver=`rustup --version | cut -d ' ' -f 2`
-  - cargo_new_ver=`cargo --version | cut -d ' ' -f 2`
+  - rustup_ver=`rustup --version | cut -d ' ' -f 2`
+  - cargo_ver=`cargo --version | cut -d ' ' -f 2`
   - odiff=`git diff`
-  - outlog="[`date -Ru`] rustup: ${rustup_new_ver}"
-    #- outlog="[`date -Ru`] rustup: ${rustup_new_ver} cargo: ${cargo_new_ver}"
+  - outlog="\[`date -Ru`\] rustup\: ${rustup_ver} cargo\: ${cargo_ver}"
     #- if [[ -n "$odiff" ]]; then echo $outlog >> ./build/auto_update.log; fi
   - git config --global user.name "Travis CI"
   - git config --global user.email "travis@travis-ci.org"

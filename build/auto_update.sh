@@ -11,7 +11,7 @@ cargo_new_ver=`cargo --version | cut -d' ' -f2`
 
 cargo_url="https://raw.githubusercontent.com/rust-lang/cargo/rust-${cargo_new_ver}/src/etc/_cargo"
 
-if [ ${rustup_cur_ver} != ${rustup_new_ver} ]; then
+if [[ ${rustup_cur_ver} != ${rustup_new_ver} ]]; then
   rustup completions zsh > ${src_dir}/_rustup
   curl ${cargo_url} > ${src_dir}/_cargo
 fi
