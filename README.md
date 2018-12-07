@@ -5,19 +5,19 @@
 
 ## Date source
 
-| Service | Source |
-|--------:|:-------|
-| [rustup](https://github.com/rust-lang/rustup.rs) | `rustup completions zsh` |
-| [cargo](https://github.com/rust-lang/cargo) | [\_cargo](https://raw.githubusercontent.com/rust-lang/cargo/master/src/etc/_cargo) |
-| [rustc](https://github.com/rust-lang/rust/tree/master/src/rustc) | [\_rustc](https://raw.githubusercontent.com/rust-lang/zsh-config/master/_rust) |
+| Service | Source | License |
+|--------:|:-------|:--------|
+| [rustup](https://github.com/rust-lang/rustup.rs) | `rustup completions zsh` | [MIT](https://github.com/rust-lang/rustup.rs/blob/master/LICENSE-MIT) & [Apache](https://github.com/rust-lang/rustup.rs/blob/master/LICENSE-APACHE) |
+| [cargo](https://github.com/rust-lang/cargo) | [\_cargo](https://github.com/rust-lang/cargo/blob/master/src/etc/_cargo) | [MIT](https://github.com/rust-lang/cargo/blob/master/LICENSE-MIT) & [Apache](https://github.com/rust-lang/cargo/blob/master/LICENSE-APACHE) |
+| [rustc](https://github.com/rust-lang/rust/tree/master/src/rustc) | [\_rustc](https://github.com/rust-lang/zsh-config/blob/master/_rust) | [MIT](https://github.com/rust-lang/zsh-config/blob/master/LICENSE-MIT) & [Apache](https://github.com/rust-lang/zsh-config/blob/master/LICENSE-APACHE) |
 
 
 ## Installation
 ### Manually
-Download [source files](https://github.com/ryutok/rust-zsh-completions/archive/master.zip) somewhere you want to install, and add the following lines in your `.zshrc`.
+Download [source files](https://github.com/ryutok/rust-zsh-completions/releases) somewhere you want to install, and add the following lines in your `.zshrc`.
 
 ```
-export fpath=(path/to/rust-zsh-completions $fpath)
+export fpath=(path/to/rust-zsh-completions/src $fpath)
 autoload -U compinit && compinit
 ```
 
