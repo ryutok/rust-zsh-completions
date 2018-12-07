@@ -13,6 +13,9 @@ install:
   - curl https://sh.rustup.rs -sSf | sh -s -- -y
   - export PATH=$HOME/.cargo/bin:$PATH
 
+before_script:
+  - git checkout master
+
 script:
   - ./build/auto_update.sh
 
