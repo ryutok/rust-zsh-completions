@@ -28,6 +28,6 @@ after_success:
   - git config --global user.email "26628494+ryutok@users.noreply.github.com"
   - git add --all
   - git commit -m "Auto update from Travis CI"
-  - git tag -f ${rustup_ver}
+  - git tag -f -a -m "rustup ${rustup_ver}, cargo ${cargo_ver}" ${rustup_ver}
   - if [[ -n "$odiff" ]]; then git push https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git master; fi
   - if [[ -n "$odiff" ]]; then git push -f https://$GH_TOKEN@github.com/ryutok/rust-zsh-completions.git ${rustup_ver}; fi
